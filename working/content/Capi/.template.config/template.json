@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Dmitry Ponomarev",
+    "classifications": [
+        "Web",
+        "Clean Architecture Project",
+        "API",
+        "Microservice"
+    ],
+    "identity": "dponomarev.cleanarchitecture.template",
+    "name": "Clean Architecture Project",
+    "description": "Микросервис с Clean Architecture. Author: Dmitry Ponomarev (ponomarev.dy@yandex.ru, GitHub: @Badunsutra)",
+    "shortName": "Capi",
+    "sourceName": "Capi",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    }
+}
