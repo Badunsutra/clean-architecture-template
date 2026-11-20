@@ -43,20 +43,28 @@ dotnet nuget add source https://nuget.pkg.github.com/iksergey/index.json \
 ### 2. Установить шаблон
 
 ```bash
-dotnet new install dponomarev.cleanarchitecture.template
+dotnet new install dponomarev.clean-architecture.template
 ```
 
 ### 3. Использовать шаблон
 
+По умолчанию шаблон создаёт сервис для .NET 10 LTS. Для воспроизведения примеров курса можно выбрать .NET 9.
+
 ```bash
-# Создать новый проект
+# Создать сервис для .NET 10 LTS
 dotnet new Capi -n MyMicroservice
 
-# Перейти в проект и запустить
-cd MyMicroservice
-dotnet build
-dotnet run --project MyMicroservice.API
+# Создать сервис для .NET 9
+dotnet new Capi -n MyCourseService --framework net9.0
+
+# Посмотреть все параметры шаблона
+dotnet new Capi --help
+
+# Запустить API созданного сервиса
+dotnet run --project MyMicroservice/MyMicroservice.API
 ```
+
+Параметр `--framework` задаёт целевую платформу всех четырёх проектов и выбирает соответствующую версию пакетов `Microsoft.Extensions.*`.
 
 ## 🛠️ Управление шаблоном
 
@@ -66,11 +74,11 @@ dotnet run --project MyMicroservice.API
   ```
 - Обновить шаблон:
   ```bash
-  dotnet new install iksergey.cleanarchitecture.template --force
+  dotnet new install dponomarev.clean-architecture.template --force
   ```
 - Удалить шаблон:
   ```bash
-  dotnet new uninstall iksergey.cleanarchitecture.template
+  dotnet new uninstall dponomarev.clean-architecture.template
   ```
 - Удалить источник:
   ```bash
@@ -97,8 +105,8 @@ dotnet nuget list source
    git push origin main
 
    # Создать и запушить тег версии
-   git tag v1.0.0
-   git push origin v1.0.0
+   git tag v1.1.0
+   git push origin v1.1.0
    ```
 
 3. Автоматическая публикация  
@@ -124,12 +132,7 @@ dotnet new Capi -n TestProject
 dotnet new uninstall "/полный/путь/к/working"
 ```
 
-# Подготовка
-
-```bash
-▸ dotnet --version
-9.0.102
-```
+Для упаковки шаблона используется .NET 10 SDK. Для запуска созданного API нужен ASP.NET Core Runtime выбранной версии.
 
 ## 📋 Создание проекта
 
@@ -182,14 +185,6 @@ dotnet add reference "../Capi.Application"
    }
    ```
 
-### Для использования `IServiceCollection`
+### Конфигурация и внедрение зависимостей
 
-```bash
-dotnet add package "Microsoft.Extensions.DependencyInjection.Abstractions" --version "9.0.7"
-```
-
-### Для использования `IConfiguration`
-
-```bash
-dotnet add package "Microsoft.Extensions.Configuration" --version "9.0.7"
-```
+Проекты Application и Infrastructure уже ссылаются на `Microsoft.Extensions.Configuration` и `Microsoft.Extensions.DependencyInjection.Abstractions`. Версии этих пакетов выбираются при создании сервиса.
